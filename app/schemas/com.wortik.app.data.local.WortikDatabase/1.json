@@ -1,0 +1,169 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "5bea182de531f0a62a6be6841e9dac8c",
+    "entities": [
+      {
+        "tableName": "words",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `word` TEXT NOT NULL, `normalized_word` TEXT NOT NULL, `gender` TEXT NOT NULL, `part_of_speech` TEXT NOT NULL, `plural` TEXT, `ipa` TEXT, `audio_url` TEXT, `meanings_json` TEXT NOT NULL, `examples_json` TEXT NOT NULL, `noun_declension_json` TEXT, `verb_conjugation_json` TEXT, `is_saved` INTEGER NOT NULL, `last_viewed_at` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "word",
+            "columnName": "word",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "normalizedWord",
+            "columnName": "normalized_word",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gender",
+            "columnName": "gender",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "partOfSpeech",
+            "columnName": "part_of_speech",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "plural",
+            "columnName": "plural",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "ipa",
+            "columnName": "ipa",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "audioUrl",
+            "columnName": "audio_url",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "meaningsJson",
+            "columnName": "meanings_json",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "examplesJson",
+            "columnName": "examples_json",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nounDeclensionJson",
+            "columnName": "noun_declension_json",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "verbConjugationJson",
+            "columnName": "verb_conjugation_json",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isSaved",
+            "columnName": "is_saved",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastViewedAt",
+            "columnName": "last_viewed_at",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_words_normalized_word",
+            "unique": false,
+            "columnNames": [
+              "normalized_word"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_words_normalized_word` ON `${TABLE_NAME}` (`normalized_word`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "ftsVersion": "FTS4",
+        "ftsOptions": {
+          "tokenizer": "simple",
+          "tokenizerArgs": [],
+          "contentTable": "words",
+          "languageIdColumnName": "",
+          "matchInfo": "FTS4",
+          "notIndexedColumns": [],
+          "prefixSizes": [],
+          "preferredOrder": "ASC"
+        },
+        "contentSyncTriggers": [
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_words_fts_BEFORE_UPDATE BEFORE UPDATE ON `words` BEGIN DELETE FROM `words_fts` WHERE `docid`=OLD.`rowid`; END",
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_words_fts_BEFORE_DELETE BEFORE DELETE ON `words` BEGIN DELETE FROM `words_fts` WHERE `docid`=OLD.`rowid`; END",
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_words_fts_AFTER_UPDATE AFTER UPDATE ON `words` BEGIN INSERT INTO `words_fts`(`docid`, `word`, `normalized_word`, `meanings_json`) VALUES (NEW.`rowid`, NEW.`word`, NEW.`normalized_word`, NEW.`meanings_json`); END",
+          "CREATE TRIGGER IF NOT EXISTS room_fts_content_sync_words_fts_AFTER_INSERT AFTER INSERT ON `words` BEGIN INSERT INTO `words_fts`(`docid`, `word`, `normalized_word`, `meanings_json`) VALUES (NEW.`rowid`, NEW.`word`, NEW.`normalized_word`, NEW.`meanings_json`); END"
+        ],
+        "tableName": "words_fts",
+        "createSql": "CREATE VIRTUAL TABLE IF NOT EXISTS `${TABLE_NAME}` USING FTS4(`word` TEXT NOT NULL, `normalized_word` TEXT NOT NULL, `meanings_json` TEXT NOT NULL, content=`words`)",
+        "fields": [
+          {
+            "fieldPath": "word",
+            "columnName": "word",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "normalizedWord",
+            "columnName": "normalized_word",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "meaningsJson",
+            "columnName": "meanings_json",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": []
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5bea182de531f0a62a6be6841e9dac8c')"
+    ]
+  }
+}

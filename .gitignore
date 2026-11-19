@@ -1,0 +1,28 @@
+# Gradle / Build
+.gradle/
+.kotlin/
+build/
+app/build/
+app/release/
+captures/
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+
+# Local config
+local.properties
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+.navigation/
+.externalNativeBuild/
+.cxx/
+
+# OS / Misc
+.DS_Store
+Thumbs.db
+*~
+*.swp
