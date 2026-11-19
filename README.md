@@ -23,11 +23,11 @@
 
 | Home & Word of the Day | 100 Categories & A–Z | Saved & Gender Ratio |
 | :---: | :---: | :---: |
-| <img src="docs/screenshots/1.jpg" width="240" /> | <img src="docs/screenshots/2.jpg" width="240" /> | <img src="docs/screenshots/3.jpg" width="240" /> |
+| <img src="docs/screenshots/1.jpg" width="240" height="504" /> | <img src="docs/screenshots/2.jpg" width="240" height="504" /> | <img src="docs/screenshots/3.jpg" width="240" height="504" /> |
 
 | Sentence Translation | Word Details & Kasus | History & Translation Log |
 | :---: | :---: | :---: |
-| <img src="docs/screenshots/4.jpg" width="240" /> | <img src="docs/screenshots/5.jpg" width="240" /> | <img src="docs/screenshots/6.jpg" width="240" /> |
+| <img src="docs/screenshots/4.jpg" width="240" height="504" /> | <img src="docs/screenshots/5.jpg" width="240" height="504" /> | <img src="docs/screenshots/6.jpg" width="240" height="504" /> |
 
 ---
 
