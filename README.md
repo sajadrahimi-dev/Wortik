@@ -1,90 +1,72 @@
-# Wortik — Offline German Dictionary for Android
+<div align="center">
+  <img src="docs/icon.svg" alt="Wortik Icon" width="96" height="96" />
+  <h1>Wortik</h1>
+  <p><strong>Offline-first German–English dictionary for Android</strong></p>
 
-**Wortik** is a modern, fast, offline-first German–English dictionary Android app built with **Kotlin**, **Jetpack Compose**, **Material 3 (Material You)**, **Room FTS4**, and **Hilt**.
+  <p>
+    <img src="https://img.shields.io/badge/Platform-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android" />
+    <img src="https://img.shields.io/badge/Kotlin-2.0-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white" alt="Kotlin" />
+    <img src="https://img.shields.io/badge/Language-German%20%F0%9F%87%A9%F0%9F%87%AA-DD0000?style=for-the-badge" alt="German" />
+    <a href="LICENSE">
+      <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License" />
+    </a>
+  </p>
 
-Designed for German learners, Wortik combines a pre-populated **97,000+ entry offline SQLite database** with color-coded grammatical genders (`der` / `die` / `das`), full declension and conjugation tables, native audio pronunciation, flashcards, 100 curated vocabulary categories, and instant online sentence translation.
-
----
-
-## Key Features
-
-- **Offline-First Search (97,309 Entries)**
-  - Parallel prefix + SQLite **FTS4** full-text search with custom relevance ranking (`WordSearchRanker`).
-  - Smart German umlaut normalization (`ä → ae/a`, `ö → oe/o`, `ü → ue/u`, `ß → ss`) plus a dedicated `ä ö ü ß` quick-input strip.
-  - Voice search (`de-DE`) and system-wide **"Lookup in Wortik"** (`ACTION_PROCESS_TEXT`) from any app.
-  - Automatic online translation fallback for full sentences or words not in the offline database.
-- **Rich Word Details**
-  - Harmonized Material You color-coding for masculine (`der`), feminine (`die`), and neuter (`das`) nouns.
-  - Noun declension tables (*Nominativ, Genitiv, Dativ, Akkusativ* — Singular & Plural) and verb conjugation tables (*Präsens, Präteritum, Perfekt*).
-  - Native German audio playback alongside offline Android TTS (`Locale.GERMANY`), `0.75× / 1×` speed toggle, and automatic mute-detection toast that resumes playback as soon as media volume is raised.
-  - Compound & related word discovery + optional Pixabay noun photography with 24-hour caching.
-- **Explore & Vocabulary Building**
-  - **100 curated German categories** organized into 10 topic groups with search and filtering.
-  - Paginated **A–Z** (+ `Ä, Ö, Ü`) alphabetical browser.
-  - **Word of the Day** with a persistent daily randomizer.
-  - **Saved** vocabulary with gender ratio bar, article filters, and a **3D-flipping Flashcard** review mode.
-  - **History** tracking both looked-up words and translated sentences, grouped by *Today / Earlier* with swipe-to-delete.
-- **Personalization**
-  - Dynamic Color (Android 12+), 6 custom Material 3 color palettes, Light/Dark/System modes, and **AMOLED True Black**.
+  <p>
+    <a href="releases/Wortik-v1.0.0.apk"><strong>Download APK (v1.0.0)</strong></a>
+  </p>
+</div>
 
 ---
 
-## Tech Stack & Architecture
+## Screenshots
 
-- **Language:** Kotlin (JVM 17), Coroutines & Flow
-- **UI:** Jetpack Compose, Material 3, Navigation Compose, Coil
-- **Dependency Injection:** Dagger Hilt
-- **Persistence:**
-  - `WortikDatabase` — Read-only pre-populated SQLite database with Room + FTS4 (`assets/databases/wortik.db`)
-  - `UserDataDatabase` — Separate Room database (`wortik_user_data.db`) with explicit migrations so user bookmarks, word history, and translation history survive dictionary updates
-  - Jetpack DataStore Preferences for theme & user settings
-- **Serialization:** `kotlinx.serialization`
-- **Testing:** JUnit 4 unit tests for German text normalization and search ranking
+| Home & Word of the Day | 100 Categories & A–Z | Saved & Gender Ratio |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/1.jpg" width="240" /> | <img src="docs/screenshots/2.jpg" width="240" /> | <img src="docs/screenshots/3.jpg" width="240" /> |
 
-```text
-app/src/main/java/com/wortik/app/
-├── data/
-│   ├── local/        # Room DAOs, Entities, Databases, DataStore, Categories
-│   ├── remote/       # Pixabay photo service (24h cache), Online translation
-│   └── repository/   # DictionaryRepositoryImpl, WordSearchRanker
-├── di/               # Hilt modules
-├── domain/
-│   ├── model/        # WordEntry, NounDeclension, VerbConjugation, etc.
-│   └── repository/   # DictionaryRepository interface
-└── ui/
-    ├── components/   # FloatingBottomBar, PronunciationControls, VolumeToast, WordListItem
-    ├── screens/      # Home, Explore, Saved, History, WordDetail, Settings
-    └── theme/        # Material 3 palettes, AMOLED Black, harmonized gender colors
+| Sentence Translation | Word Details & Kasus | History & Translation Log |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/4.jpg" width="240" /> | <img src="docs/screenshots/5.jpg" width="240" /> | <img src="docs/screenshots/6.jpg" width="240" /> |
+
+---
+
+## Features
+
+- **97,000+ Offline Words** — Fast Room + SQLite FTS4 search with smart umlaut handling (`ä/ö/ü/ß`) and voice search (`de-DE`).
+- **Color-Coded Genders** — Harmonized Material You colors for `der` / `die` / `das`.
+- **Grammar Tables** — Noun declensions (*Kasus*) and verb conjugations (*Präsens, Präteritum, Perfekt*).
+- **Pronunciation** — Native German audio + offline Android TTS with `0.75× / 1×` speed control.
+- **Explore** — 100 curated vocabulary categories + alphabetical A–Z browser.
+- **Flashcards & History** — 3D-flipping flashcards, gender stats, and searchable word + sentence history.
+- **Online Translation** — Instant DE ⇄ EN fallback for sentences and out-of-dictionary words.
+- **Material You Themes** — Dynamic Color, 6 custom palettes, and AMOLED True Black.
+
+---
+
+## Tech Stack
+
+- **UI:** Kotlin, Jetpack Compose, Material 3, Coil
+- **Architecture:** MVVM + Repository pattern, Hilt DI, Coroutines & Flow
+- **Storage:** Room (pre-populated FTS4 dictionary DB + separate user-data DB), DataStore Preferences
+- **Tests:** JUnit 4 unit tests
+
+---
+
+## Build
+
+```bash
+git clone https://github.com/sajadrahimi-dev/Wortik.git
+cd Wortik
+./gradlew testDebugUnitTest assembleDebug
 ```
 
----
-
-## Getting Started
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/sajadrahimi-dev/Wortik.git
-   ```
-2. Open the project in **Android Studio** (JDK 17, Compile SDK 35, Min SDK 26).
-3. *(Optional)* To enable noun photographs via Pixabay, add your free [Pixabay API key](https://pixabay.com/api/docs/) to `local.properties` (this file is gitignored):
-   ```properties
-   PIXABAY_API_KEY=your_pixabay_api_key_here
-   ```
-   Without this key, the app builds and runs normally with photos disabled.
-4. Run unit tests and build:
-   ```bash
-   ./gradlew testDebugUnitTest assembleDebug
-   ```
+*(Optional)* Add `PIXABAY_API_KEY=your_key` to `local.properties` to enable noun photos.
 
 ---
 
-## Data & Attribution
+## Credits & License
 
-- **Dictionary Data:** [Wiktionary](https://www.wiktionary.org/) via [Kaikki](https://kaikki.org/) (CC BY-SA 4.0)
-- **Noun Photographs (optional):** [Pixabay](https://pixabay.com/) (Pixabay License)
-
----
-
-## License
-
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+- Dictionary data: [Wiktionary](https://www.wiktionary.org/) via [Kaikki](https://kaikki.org/) (CC BY-SA 4.0)
+- Noun photos: [Pixabay](https://pixabay.com/)
+- Licensed under the [MIT License](LICENSE)

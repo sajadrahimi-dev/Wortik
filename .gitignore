@@ -6,6 +6,7 @@ app/build/
 app/release/
 captures/
 *.apk
+!releases/*.apk
 *.ap_
 *.aab
 *.dex
