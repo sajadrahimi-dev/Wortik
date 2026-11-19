@@ -57,10 +57,10 @@ enum class BottomTab(
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector
 ) {
-    HISTORY(R.string.nav_history, Icons.Rounded.History, Icons.Outlined.History),
     HOME(R.string.nav_search, Icons.Rounded.Search, Icons.Outlined.Search),
     EXPLORE(R.string.nav_explore, Icons.Rounded.Explore, Icons.Outlined.Explore),
-    SAVED(R.string.nav_saved, Icons.Rounded.Bookmarks, Icons.Outlined.Bookmarks)
+    SAVED(R.string.nav_saved, Icons.Rounded.Bookmarks, Icons.Outlined.Bookmarks),
+    HISTORY(R.string.nav_history, Icons.Rounded.History, Icons.Outlined.History)
 }
 
 @Composable

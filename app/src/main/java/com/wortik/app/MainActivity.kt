@@ -67,10 +67,10 @@ private object Routes {
     fun wordDetail(wordId: Long) = "word/$wordId"
 
     fun tabIndex(route: String?): Int? = when (route) {
-        HISTORY -> 0
-        HOME -> 1
-        EXPLORE -> 2
-        SAVED -> 3
+        HOME -> 0
+        EXPLORE -> 1
+        SAVED -> 2
+        HISTORY -> 3
         else -> null
     }
 }
