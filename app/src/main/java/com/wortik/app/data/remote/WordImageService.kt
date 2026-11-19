@@ -35,10 +35,24 @@ class WordImageService @Inject constructor(
 
     private companion object {
         const val CACHE_TTL_MS = 24L * 60L * 60L * 1000L
+
+        fun resolveApiKey(): String {
+            val encRaw = BuildConfig.PIXABAY_ENC
+            val maskRaw = BuildConfig.PIXABAY_MASK
+            if (encRaw.isBlank() || maskRaw.isBlank()) return ""
+            val enc = encRaw.split(',').mapNotNull { it.toIntOrNull() }
+            val mask = maskRaw.split(',').mapNotNull { it.toIntOrNull() }
+            if (enc.isEmpty() || mask.isEmpty()) return ""
+            val chars = CharArray(enc.size)
+            for (i in enc.indices) {
+                chars[i] = (enc[i] xor mask[i % mask.size]).toChar()
+            }
+            return String(chars)
+        }
     }
 
     suspend fun getPhotoForNoun(germanWord: String, englishMeanings: List<String>): WordImage? {
-        val apiKey = BuildConfig.PIXABAY_API_KEY
+        val apiKey = resolveApiKey()
         if (apiKey.isBlank()) return null
 
         val enTerm = extractCleanSearchTerm(englishMeanings)

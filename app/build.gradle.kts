@@ -16,6 +16,11 @@ val localProps = Properties().apply {
     }
 }
 val pixabayApiKey: String = localProps.getProperty("PIXABAY_API_KEY", "").trim()
+val xorMask = intArrayOf(0x5A, 0x3C, 0x71, 0x2F, 0x63, 0x19, 0x4E)
+val encodedKeyBytes = pixabayApiKey.mapIndexed { i, ch ->
+    (ch.code xor xorMask[i % xorMask.size]).toString()
+}.joinToString(",")
+val maskBytes = xorMask.joinToString(",")
 
 android {
     namespace = "com.wortik.app"
@@ -29,7 +34,8 @@ android {
         versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "PIXABAY_API_KEY", "\"$pixabayApiKey\"")
+        buildConfigField("String", "PIXABAY_ENC", "\"$encodedKeyBytes\"")
+        buildConfigField("String", "PIXABAY_MASK", "\"$maskBytes\"")
     }
 
     buildTypes {
