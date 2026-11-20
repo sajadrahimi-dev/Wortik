@@ -1,10 +1,13 @@
 package com.wortik.app.ui.screens.explore
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.CallSplit
+import androidx.compose.material.icons.automirrored.rounded.CompareArrows
 import androidx.compose.material.icons.automirrored.rounded.DirectionsBike
 import androidx.compose.material.icons.automirrored.rounded.DirectionsRun
 import androidx.compose.material.icons.automirrored.rounded.HelpOutline
 import androidx.compose.material.icons.automirrored.rounded.MenuBook
+import androidx.compose.material.icons.automirrored.rounded.TrendingUp
 import androidx.compose.material.icons.rounded.AccountBalance
 import androidx.compose.material.icons.rounded.AccountTree
 import androidx.compose.material.icons.rounded.AccessibilityNew
@@ -24,14 +27,12 @@ import androidx.compose.material.icons.rounded.BusinessCenter
 import androidx.compose.material.icons.rounded.Cake
 import androidx.compose.material.icons.rounded.Calculate
 import androidx.compose.material.icons.rounded.CalendarMonth
-import androidx.compose.material.icons.rounded.CallSplit
 import androidx.compose.material.icons.rounded.CameraAlt
 import androidx.compose.material.icons.rounded.Category
 import androidx.compose.material.icons.rounded.Celebration
 import androidx.compose.material.icons.rounded.Chair
 import androidx.compose.material.icons.rounded.Checkroom
 import androidx.compose.material.icons.rounded.CleaningServices
-import androidx.compose.material.icons.rounded.CompareArrows
 import androidx.compose.material.icons.rounded.Computer
 import androidx.compose.material.icons.rounded.DinnerDining
 import androidx.compose.material.icons.rounded.DirectionsCar
@@ -97,7 +98,6 @@ import androidx.compose.material.icons.rounded.TheaterComedy
 import androidx.compose.material.icons.rounded.Thermostat
 import androidx.compose.material.icons.rounded.Thunderstorm
 import androidx.compose.material.icons.rounded.Train
-import androidx.compose.material.icons.rounded.TrendingUp
 import androidx.compose.material.icons.rounded.Watch
 import androidx.compose.material.icons.rounded.WavingHand
 import androidx.compose.material.icons.rounded.WbSunny
@@ -182,7 +182,7 @@ fun categoryIconFor(categoryId: String): ImageVector = when (categoryId) {
     "computers" -> Icons.Rounded.Computer
     "internet" -> Icons.Rounded.Wifi
     "smartphone" -> Icons.Rounded.Smartphone
-    "business" -> Icons.Rounded.TrendingUp
+    "business" -> Icons.AutoMirrored.Rounded.TrendingUp
     "math_science" -> Icons.Rounded.Calculate
 
     "body_head" -> Icons.Rounded.Face
@@ -212,9 +212,9 @@ fun categoryIconFor(categoryId: String): ImageVector = when (categoryId) {
     "abstract_nouns" -> Icons.Rounded.Lightbulb
     "common_verbs_1" -> Icons.Rounded.Bolt
     "common_verbs_2" -> Icons.AutoMirrored.Rounded.DirectionsRun
-    "separable_verbs" -> Icons.Rounded.CallSplit
+    "separable_verbs" -> Icons.AutoMirrored.Rounded.CallSplit
     "adjectives_common" -> Icons.Rounded.AutoAwesome
-    "opposites" -> Icons.Rounded.CompareArrows
+    "opposites" -> Icons.AutoMirrored.Rounded.CompareArrows
     "feelings_verbs" -> Icons.Rounded.Psychology
     "social_verbs" -> Icons.Rounded.Groups
 
